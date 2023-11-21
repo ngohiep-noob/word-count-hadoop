@@ -27,7 +27,13 @@ public class Top5_Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
         // put the wordcount as key and the word as value in the word list
         // so the words can be sorted by their wordcounts
-        word_list.put(Integer.valueOf(line[1]) + random.nextFloat(), line[0]);
+        Float nextFloat = random.nextFloat();
+
+        if (nextFloat == 1) {
+            nextFloat = 0.9888f;
+        }
+
+        word_list.put(Integer.valueOf(line[1]) + nextFloat, line[0]);
 
         // if the local word list is populated with more than 5 elements
         // remove the first (aka remove the word with the smallest wordcount)

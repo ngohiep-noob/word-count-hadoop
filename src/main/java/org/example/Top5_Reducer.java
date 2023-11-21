@@ -33,12 +33,18 @@ public class Top5_Reducer extends Reducer<Text, IntWritable, IntWritable, Text>
 
         // put the wordcount as key and the word as value in the word list
         // so the words can be sorted by their wordcounts
-        word_list.put(wordcount + random.nextFloat(), key.toString());
+        Float nextFloat = random.nextFloat();
+
+        if (nextFloat == 1) {
+            nextFloat = 0.9888f;
+        }
+
+        word_list.put(wordcount + nextFloat, key.toString());
 
         // if the global word list is populated with more than 5 elements
         // remove the first (aka remove the word with the smallest wordcount)
-//        if (word_list.size() > n)
-//            word_list.remove(word_list.firstKey());
+        if (word_list.size() > n)
+            word_list.remove(word_list.firstKey());
     }
 
     public void cleanup(Context context) throws IOException, InterruptedException
