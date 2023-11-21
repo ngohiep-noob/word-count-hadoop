@@ -1,3 +1,5 @@
 org\example\WC_Reducer.class
 org\example\WC_Mapper.class
 org\example\Driver.class
+org\example\Top5_Reducer.class
+org\example\Top5_Mapper.class
