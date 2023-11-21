@@ -9,10 +9,6 @@ import org.apache.hadoop.mapreduce.Job;
 
 public class Driver {
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
-        Path wc_input = new Path(args[0]);
-        Path wc_output = new Path(args[1]);
-        Path top5_output = new Path(args[2]);
-
         JobConf wc_conf = new JobConf(Driver.class);
         wc_conf.setJobName("WordCount");
         wc_conf.setOutputKeyClass(Text.class);
@@ -22,8 +18,8 @@ public class Driver {
         wc_conf.setReducerClass(WC_Reducer.class);
         wc_conf.setInputFormat(TextInputFormat.class);
         wc_conf.setOutputFormat(TextOutputFormat.class);
-        FileInputFormat.setInputPaths(wc_conf,wc_input);
-        FileOutputFormat.setOutputPath(wc_conf,wc_output);
+        FileInputFormat.setInputPaths(wc_conf,new Path(args[0]));
+        FileOutputFormat.setOutputPath(wc_conf,new Path(args[1]));
 
         Job wc_job = new Job(wc_conf);
         wc_job.waitForCompletion(true);
@@ -34,8 +30,8 @@ public class Driver {
         top5_conf.setMapOutputValueClass(IntWritable.class);
         top5_conf.setOutputKeyClass(IntWritable.class);
         top5_conf.setOutputValueClass(Text.class);
-        FileInputFormat.setInputPaths(top5_conf,wc_output);
-        FileOutputFormat.setOutputPath(top5_conf,top5_output);
+        FileInputFormat.setInputPaths(top5_conf,new Path(args[1]));
+        FileOutputFormat.setOutputPath(top5_conf,new Path(args[2]));
 
         Job top5_job = new Job(top5_conf);
         top5_job.setMapperClass(Top5_Mapper.class);
