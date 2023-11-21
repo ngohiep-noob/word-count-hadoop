@@ -37,8 +37,8 @@ public class Top5_Reducer extends Reducer<Text, IntWritable, IntWritable, Text>
 
         // if the global word list is populated with more than 5 elements
         // remove the first (aka remove the word with the smallest wordcount)
-        if (word_list.size() > n)
-            word_list.remove(word_list.firstKey());
+//        if (word_list.size() > n)
+//            word_list.remove(word_list.firstKey());
     }
 
     public void cleanup(Context context) throws IOException, InterruptedException
