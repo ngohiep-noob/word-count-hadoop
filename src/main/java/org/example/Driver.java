@@ -1,8 +1,6 @@
 package org.example;
 
 import java.io.IOException;
-
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -13,7 +11,7 @@ public class Driver {
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
         Path wc_input = new Path(args[0]);
         Path wc_output = new Path(args[1]);
-        Path top5_output = new Path(args[1]);
+        Path top5_output = new Path(args[2]);
 
         JobConf wc_conf = new JobConf(Driver.class);
         wc_conf.setJobName("WordCount");
