@@ -15,13 +15,6 @@ public class Driver {
         Path wc_output = new Path(args[1]);
         Path top5_output = new Path(args[1]);
 
-        FileSystem fs = FileSystem.get(new JobConf());
-        if (fs.exists(wc_output))
-            fs.delete(wc_output, true);
-
-        if (fs.exists(top5_output))
-            fs.delete(top5_output, true);
-
         JobConf wc_conf = new JobConf(Driver.class);
         wc_conf.setJobName("WordCount");
         wc_conf.setOutputKeyClass(Text.class);
